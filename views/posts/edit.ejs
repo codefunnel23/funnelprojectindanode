@@ -1,0 +1,112 @@
+  <!-- Page content -->
+  <div class="container-fluid mt-6">
+    <div class="row">
+      <div class="col-xl order-xl-1">
+        <% if(message.success){ %>
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <span class="alert-text"><strong>Success!</strong> <%= message.success %></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <% } %>
+        <% if(message.error){ %>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <span class="alert-text"><strong>Error!</strong> <%= message.error %></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <% } %>
+        <div class="card">
+          <div class="card-header">
+            <div class="row align-items-center">
+              <div class="col-8">
+                <h3 class="mb-0">Edit Post </h3>
+              </div>
+              <div class="col-4 text-right">
+                <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <form action="/edit-post/<%= post._id %>" method="post" enctype="multipart/form-data">
+              <h6 class="heading-small text-muted mb-4">Post information</h6>
+              <div class="pl-lg-4">
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="form-control-label" for="langblog">Language</label>
+                      <select class="form-control" id="exampleFormControlSelect1" name="langblog">
+                        <option value="en" <%= post.langblog === 'en' ? 'selected' : '' %>>en</option>
+                        <option value="fr" <%= post.langblog === 'fr' ? 'selected' : '' %>>fr</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-name">Title</label>
+                      <input class="form-control" placeholder="title" type="text" id="title" name="title" value="<%= post.title %>">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Content</label>
+                        <textarea class="form-control" name="content" id="content" rows="8"><%= post.content %></textarea>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Image</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="img" name="img">
+                            <label class="custom-file-label" for="customFileLang">Select file</label>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-password">Tag</label>
+                        <input class="form-control" placeholder="tag" type="text" id="tag" name="tag" value="<%= post.tag %>">
+                      </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-password">Published</label><br>
+                        <label class="custom-toggle">
+                            <input id="isPublished" name="isPublished" type="checkbox" <%= post.isPublished ? 'checked' : '' %>>
+                            <span class="custom-toggle-slider rounded-circle" data-label-off="No" data-label-on="Yes"></span>
+                        </label>
+                      </div>
+                    </div>
+                </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

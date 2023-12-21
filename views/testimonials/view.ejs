@@ -1,0 +1,93 @@
+<!-- Page content -->
+<div class="container-fluid mt-6">
+    <div class="row">
+        <div class="col-xl order-xl-1">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h3 class="mb-0">View Testimonial </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form action="#" method="">
+                        <h6 class="heading-small text-muted mb-4">Testimonial information</h6>
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-name">Name</label>
+                                        <input class="form-control" placeholder="name" type="text" id="name" name="name"
+                                            value="<%= testimonial.name %>" disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-name">Company name</label>
+                                        <input class="form-control" placeholder="company name" type="text"
+                                            id="companyName" name="companyName" value="<%= testimonial.companyName %>"
+                                            disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-6">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="user image">User image</label>
+                                        <div class="custom-file">
+                                            <img class="mt-2 rounded" src="/<%= testimonial.userImg %>"
+                                                alt="testimonial image" width="200">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row mb-6">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="company image">Company image</label>
+                                        <div class="custom-file">
+                                            <img class="mt-2 rounded" src="/<%= testimonial.companyImg %>"
+                                                alt="testimonial image" width="200">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-email">Description</label>
+                                        <textarea class="form-control" name="description" id="description" rows="8"
+                                            disabled><%= testimonial.description %></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-password">Published</label><br>
+                                        <label class="custom-toggle">
+                                            <input id="isPublished" name="isPublished" type="checkbox" disabled
+                                                <%=testimonial.isPublished ? 'checked' : '' %>>
+                                            <span class="custom-toggle-slider rounded-circle" data-label-off="No"
+                                                data-label-on="Yes"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

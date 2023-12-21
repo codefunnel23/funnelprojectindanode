@@ -1,0 +1,80 @@
+<!-- Page content -->
+<div class="container-fluid mt-6">
+    <div class="row">
+        <div class="col-xl order-xl-1">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h3 class="mb-0">View Feedback </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form action="#" method="">
+                        <h6 class="heading-small text-muted mb-4">Feedback information</h6>
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-name">Name</label>
+                                        <input class="form-control" placeholder="name" type="text" id="name" name="name"
+                                            value="<%= feedback.name %>" disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-name">Email</label>
+                                        <input class="form-control" placeholder="email" type="text"
+                                            id="email" name="email" value="<%= feedback.email %>"
+                                            disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-6">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="image">Image</label>
+                                        <div class="custom-file">
+                                            <img class="mt-2 rounded" src="/<%= feedback.img %>"
+                                                alt="feedback image" width="200">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-email">Description</label>
+                                        <textarea class="form-control" name="description" id="description" rows="8"
+                                            disabled><%= feedback.description %></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-password">Published</label><br>
+                                        <label class="custom-toggle">
+                                            <input id="isPublished" name="isPublished" type="checkbox" disabled
+                                                <%=feedback.isPublished ? 'checked' : '' %>>
+                                            <span class="custom-toggle-slider rounded-circle" data-label-off="No"
+                                                data-label-on="Yes"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

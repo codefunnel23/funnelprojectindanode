@@ -1,0 +1,99 @@
+  <!-- Page content -->
+  <div class="container-fluid mt-6">
+    <div class="row">
+      <div class="col-xl order-xl-1">
+        <% if(message.success){ %>
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <span class="alert-text"><strong>Success!</strong> <%= message.success %></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <% } %>
+        <% if(message.error){ %>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <span class="alert-text"><strong>Error!</strong> <%= message.error %></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <% } %>
+        <div class="card">
+          <div class="card-header">
+            <div class="row align-items-center">
+              <div class="col-8">
+                <h3 class="mb-0">Edit Comment </h3>
+              </div>
+              <div class="col-4 text-right">
+                <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <form action="/edit-comment/<%= comment._id %>" method="post">
+              <h6 class="heading-small text-muted mb-4">Comment information</h6>
+              <div class="pl-lg-4">
+
+                <!-- <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-name">Name</label>
+                      <input class="form-control" placeholder="name" type="text" id="name" name="name" value="<%= comment.name %>">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-name">Email</label>
+                      <input class="form-control" placeholder="email" type="email" id="email" name="email" value="<%= comment.email %>">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Image</label>
+                        <div class="custom-file">
+                            <img src="<%= comment.img %>" alt="comment-img">
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-comment">Comment</label>
+                        <textarea class="form-control" name="comment" id="comment" rows="8"><%= comment.comment %></textarea>
+                      </div>
+                    </div>
+                </div> -->
+
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-password">Published</label><br>
+                        <label class="custom-toggle">
+                            <input id="isPublished" name="isPublished" type="checkbox" <%= comment.isPublished ? 'checked' : '' %>>
+                            <span class="custom-toggle-slider rounded-circle" data-label-off="No" data-label-on="Yes"></span>
+                        </label>
+                      </div>
+                    </div>
+                </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

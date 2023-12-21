@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+    <!-- Icons -->
+    <link rel="stylesheet" href="/assets/vendor/nucleo/css/nucleo.css" type="text/css">
+    <link rel="stylesheet" href="/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+    <!-- Page plugins -->
+    <!-- Argon CSS -->
+    <link rel="stylesheet" href="/assets/css/argon.css?v=1.2.0" type="text/css">
+    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.6/datatables.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tiny.cloud/1/jsxtf3q1bzsk1fp83y7icihwasje930nlr5bgjegfy1grpso/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+</head>
+<body>
+    <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+        <div class="scrollbar-inner">
+          <!-- Brand -->
+          <div class="sidenav-header  align-items-center">
+            <a class="navbar-brand" href="javascript:void(0)">
+              <img src="/Logo.png" class="navbar-brand-img" alt="inda_logo" style="min-height: 3rem;">
+            </a>
+          </div>
+          <div class="navbar-inner">
+            <!-- Collapse -->
+            <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+              <!-- Nav items -->
+              <ul class="navbar-nav" id="dynamic-nav-items">
+                <!-- <li class="nav-item">
+                  <a class="nav-link" href="/" data-target="dashboard">
+                      <i class="ni ni-tv-2 text-primary"></i>
+                      <span class="nav-link-text">Dashboard</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/users">
+                    <i class="ni ni-single-02 text-orange"></i>
+                    <span class="nav-link-text">Users</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/roles">
+                    <i class="ni ni-key-25 text-info"></i>
+                    <span class="nav-link-text">Roles</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/permissions">
+                    <i class="ni ni-key-25 text-info"></i>
+                    <span class="nav-link-text">Permissions</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts">
+                    <i class="ni ni-archive-2 text-primary"></i>
+                    <span class="nav-link-text">Posts</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/testimonials">
+                    <i class="ni ni-like-2 text-success"></i>
+                    <span class="nav-link-text">Testimonials</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/visitors">
+                    <i class="fa fa-eye text-default"></i>
+                    <span class="nav-link-text">Visitors</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/messages">
+                    <i class="fas fa-envelope text-info"></i>
+                    <span class="nav-link-text">Messages</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/comments">
+                    <i class="fas fa-comments text-pink"></i>
+                    <span class="nav-link-text">Comments</span>
+                  </a>
+                </li> -->
+              </ul>
+              <!-- Divider -->
+              <hr class="my-3">
+              <!-- Heading -->
+            </div>
+          </div>
+        </div>
+      </nav>
+      <!-- Main content -->
+      <div class="main-content" id="panel">
+        <!-- Topnav -->
+        <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
+          <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <!-- Search form -->
+              <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main">
+                <div class="form-group mb-0">
+                  <div class="input-group input-group-alternative input-group-merge">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-search"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Search" type="text">
+                  </div>
+                </div>
+                <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </form>
+              <!-- Navbar links -->
+              <ul class="navbar-nav align-items-center  ml-md-auto ">
+                <li class="nav-item d-sm-none">
+                  <a class="nav-link" href="#" data-action="search-show" data-target="#navbar-search-main">
+                    <i class="ni ni-zoom-split-in"></i>
+                  </a>
+                </li>
+              </ul>
+              <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
+                <li class="nav-item d-xl-none">
+                  <!-- Sidenav toggler -->
+                  <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin" data-target="#sidenav-main">
+                    <div class="sidenav-toggler-inner">
+                      <i class="sidenav-toggler-line"></i>
+                      <i class="sidenav-toggler-line"></i>
+                      <i class="sidenav-toggler-line"></i>
+                    </div>
+                  </div>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="media align-items-center">
+                      <span class="avatar avatar-sm rounded-circle">
+                        <img alt="Image placeholder" src="https://ui-avatars.com/api/?name=<%= user.name %>&background=fff&color=5e72e4">
+                      </span>
+                      <div class="media-body  ml-2  d-none d-lg-block">
+                        <span class="mb-0 text-sm  font-weight-bold"><%= user.name %></span>
+                      </div>
+                    </div>
+                  </a>
+                  <div class="dropdown-menu  dropdown-menu-right ">
+                    <!-- <a href="#!" class="dropdown-item">
+                      <i class="ni ni-support-16"></i>
+                      <span>Support</span>
+                    </a> -->
+                    <!-- <div class="dropdown-divider"></div> -->
+                    <a href="/logout" class="dropdown-item">
+                      <i class="ni ni-user-run"></i>
+                      <span>Logout</span>
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        
+        <%- body %>
+        
+      </div>
+
+      <script>
+          var dataFromSession = '<%= permissions %>';
+          console.log(dataFromSession)
+        var nav = document.getElementById("dynamic-nav-items");
+        const navItems = [
+                      {
+                          href: "/",
+                          name: "Dashboard",
+                          icon: "ni ni-tv-2",
+                          color: "text-primary"
+                      },
+                      {
+                          href: "/users",
+                          name: "Users",
+                          icon: "ni ni-single-02",
+                          color: "text-orange"
+                      },
+                      {
+                          href: "/roles",
+                          name: "Roles",
+                          icon: "ni ni-key-25",
+                          color: "text-info"
+                      },
+                      {
+                          href: "/permissions",
+                          name: "Permissions",
+                          icon: "ni ni-key-25",
+                          color: "text-info"
+                      },
+                      {
+                          href: "/posts",
+                          name: "Posts",
+                          icon: "ni ni-archive-2",
+                          color: "text-primary"
+                      },
+                      {
+                          href: "/testimonials",
+                          name: "Testimonials",
+                          icon: "ni ni-like-2",
+                          color: "text-success"
+                      },
+                      {
+                          href: "/feedbacks",
+                          name: "Feedbacks",
+                          icon: "ni ni-satisfied",
+                          color: "text-red"
+                      },
+                      {
+                          href: "/visitors",
+                          name: "Visitors",
+                          icon: "fa fa-eye",
+                          color: "text-default"
+                      },
+                      {
+                          href: "/messages",
+                          name: "Messages",
+                          icon: "fas fa-envelope",
+                          color: "text-info"
+                      },
+                      {
+                          href: "/partner-messages",
+                          name: "Partner Messages",
+                          icon: "fas fa-briefcase",
+                          color: "text-success"
+                      },
+                      {
+                          href: "/comments",
+                          name: "Comments",
+                          icon: "fas fa-comments",
+                          color: "text-pink"
+                      },
+                      
+                  ];
+                  // Filter navItems based on dataFromSession
+                  const filteredNavItems = navItems.filter(item => dataFromSession.includes(item.href));
+
+                  filteredNavItems.forEach(item => {
+                      let child = `
+                      <li class="nav-item">
+                          <a class="nav-link" href="${item.href}">
+                              <i class="${item.icon} ${item.color}"></i>
+                              <span class="nav-link-text">${item.name}</span>
+                          </a>
+                      </li>
+                      `;
+
+                      nav.insertAdjacentHTML('beforeend', child);
+                  });
+      </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/vendor/js-cookie/js.cookie.js"></script>
+    <script src="/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+    <!-- Optional JS -->
+    <script src="/assets/vendor/chart.js/dist/Chart.min.js"></script>
+    <script src="/assets/vendor/chart.js/dist/Chart.extension.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
+    <!-- Argon JS -->
+    <script src="/assets/js/argon.js?v=1.2.0"></script>
+    <script src="https://cdn.datatables.net/v/bs5/dt-1.13.6/datatables.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        const table = $(".table-datatable").DataTable({
+          order: [0, 'desc']
+        });
+
+        modifyPaginationButtons();
+
+        table.on('draw.dt', function () {
+          modifyPaginationButtons();
+        });
+
+        });
+
+        function modifyPaginationButtons() {
+          $('.paginate_button.previous a').html('<i class="fas fa-angle-left"></i>');
+          $('.paginate_button.next a').html('<i class="fas fa-angle-right"></i>');
+        }
+        
+    </script>
+
+<script>
+window.onload = function() {
+    var navItems = document.querySelectorAll('.navbar-nav .nav-item .nav-link');
+
+    // Get saved 'active' item from localStorage
+    var activeItem = localStorage.getItem('activeItem');
+
+    navItems.forEach(function(navItem) {
+        // If this item was the 'active' item, add 'active' class
+        if (navItem.getAttribute('href') === activeItem) {
+            navItem.classList.add('active');
+        }
+
+        navItem.addEventListener('click', function() {
+            // Remove 'active' class from all items
+            navItems.forEach(function(navItem) {
+                navItem.classList.remove('active');
+            });
+
+            // Add 'active' class to the clicked item
+            this.classList.add('active');
+
+            // Save 'active' item to localStorage
+            localStorage.setItem('activeItem', this.getAttribute('href'));
+        });
+    });
+};
+
+</script>
+
+<script>
+  tinymce.init({
+    selector: 'textarea.tinymce-editor',
+    plugins: 'autolink charmap codesample emoticons link lists visualblocks wordcount',
+    menubar:"false",
+    toolbar: 'undo redo | blocks | bold italic underline | link | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+    tinycomments_mode: 'embedded',
+    tinycomments_author: 'Author name',
+    mergetags_list: [
+      { value: 'First.Name', title: 'First Name' },
+      { value: 'Email', title: 'Email' },
+    ],
+  });
+</script>
+
+
+</body>
+</html>

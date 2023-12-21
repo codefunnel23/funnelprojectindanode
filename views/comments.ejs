@@ -1,0 +1,149 @@
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+      <div class="header-body">
+        <div class="row align-items-center py-4">
+          <div class="col-lg-6 col-7">
+            <h6 class="h2 text-white d-inline-block mb-0">Comments</h6>
+            <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+              <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="#">Comments</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Comments</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="col-lg-6 col-5 text-right">
+            <!-- <a href="/add-comment" class="btn btn-sm btn-neutral"><i class="fas fa-plus"></i> New</a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page content -->
+  <div class="container-fluid mt--6">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <!-- Card header -->
+          <div class="card-header border-0">
+            <% if(message.success){ %>
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <span class="alert-text"><strong>Success!</strong> <%= message.success %></span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <% } %>
+            <% if(message.error){ %>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <span class="alert-text"><strong>Error!</strong> <%= message.error %></span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <% } %>
+            <h3 class="mb-0">Light table</h3>
+          </div>
+          <!-- Light table -->
+          <div class="table-responsive">
+            <% if(comments != ''){ %>
+            <table class="table align-items-center table-flush table-datatable">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col" class="sort" data-sort="name">Name</th>
+                  <th scope="col" class="sort" data-sort="email">Email</th>
+                  <th scope="col" class="sort" data-sort="image">Image</th>
+                  <th scope="col" class="sort" data-sort="comment">Comment</th>
+                  <th scope="col" class="sort" data-sort="published">Published</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody class="list">
+                <% comments.forEach((row, index) => { %>
+                <tr>
+
+                    <td class="name">
+                        <div>
+                            <span class="mb-0 text-sm"><%= row.name %></span>
+                        </div>
+                    </td>
+
+                    <td class="email">
+                        <div>
+                            <span class="mb-0 text-sm"><%= row.email %></span>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="media align-items-center">
+                            <img alt="Image" src="<%= row.img %>" width="100">
+                        </div>
+                    </td>
+
+                  <th scope="row">
+                    <div class="media align-items-center">
+                      <div class="media-body">
+                        <a href="/view-comment/<%= row._id %>" class="name mb-0 text-sm"><%= row.comment.length > 50 ? row.comment.substring(0,50)+"..." : row.comment  %></a>
+                      </div>
+                    </div>
+                  </th>
+
+                  <td class="published">
+                    <% if(row.isPublished == true) { %>
+                      <span class="text-success text-lg"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
+                    <% } else { %>
+                      <span class="text-danger text-lg"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
+                    <% } %>
+                  </td>
+                  
+                  <td class="text-right">
+                    <div class="dropdown">
+                      <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v"></i>
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                        <a class="dropdown-item" href="/edit-comment/<%= row._id %>"><span class="fa fa-pen mr-2"></span>Edit</a>
+                        <a class="dropdown-item" href="/view-comment/<%= row._id %>"><span class="fa fa-eye mr-2"></span>View</a>
+                        <a type="button" class="dropdown-item text-dark" data-toggle="modal" data-target="#exampleModal<%= index %>"><span class="fa fa-trash mr-2"></span>Delete</a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal<%= index %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Confirmation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        Are you sure you want to delete <span class="text-primary font-weight-bold"><%= row.name %></span>?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <form action="/delete-comment/<%= row._id %>" method="post">
+                          <input class="btn btn-danger" type="submit" value="Delete">
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% }) %>
+              </tbody>
+            </table>
+            <% } else { %>
+                <h1 class="text-center text-primary">No Comments Found</h1>
+            <% } %>
+          </div>
+          <!-- Card footer -->
+          <div class="card-footer py-4">
+            <!-- table footer -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+  </div>

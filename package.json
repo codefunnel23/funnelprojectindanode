@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "description": "Server side",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "serve": "nodemon server.js"
   },
